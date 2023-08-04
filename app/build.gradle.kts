@@ -104,4 +104,7 @@ dependencies {
     //okhttp
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+
+    //navigation
+    implementation("androidx.navigation:navigation-compose:2.7.0-rc01")
 }

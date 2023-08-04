@@ -14,9 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ersubhadip.mypersonaltranslator.R
 import com.ersubhadip.mypersonaltranslator.ui.theme.Black
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaLight
@@ -25,9 +25,8 @@ import com.ersubhadip.mypersonaltranslator.ui.theme.Orange
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
 
 
-@Preview
 @Composable
-fun SplashScreenComponent() {
+fun SplashScreenComponent(nav: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
