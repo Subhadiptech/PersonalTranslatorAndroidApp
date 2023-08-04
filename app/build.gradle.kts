@@ -24,8 +24,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -66,4 +65,43 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.compose.material:material:1.4.3")
+    implementation("androidx.compose.compiler:compiler:1.4.7")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.5.0-beta02")
+    implementation("androidx.activity:activity-compose:1.7.2")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.5.0-beta02")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    //Coil
+    implementation("io.coil-kt:coil:2.4.0")
+
+    //Accompanist
+    implementation("com.google.accompanist:accompanist-pager:0.24.6-alpha")
+
+    //Lifecycle Apis
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+
+    //Koin
+    implementation("io.insert-koin:koin-android:3.0.2")
+    implementation("io.insert-koin:koin-androidx-compose:3.1.2")
+
+
+    //Moshi
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
+    implementation("com.squareup.moshi:moshi:1.15.0")
+    implementation("com.squareup.moshi:moshi-adapters:1.15.0")
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    //okhttp
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 }

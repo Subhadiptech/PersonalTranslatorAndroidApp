@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MyPersonalTranslator"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.host.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyPersonalTranslator">

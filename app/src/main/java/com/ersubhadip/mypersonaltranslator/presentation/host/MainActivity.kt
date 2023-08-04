@@ -1,4 +1,4 @@
-package com.ersubhadip.mypersonaltranslator
+package com.ersubhadip.mypersonaltranslator.presentation.host
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
