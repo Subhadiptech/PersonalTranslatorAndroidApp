@@ -9,7 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.ersubhadip.mypersonaltranslator.presentation.splash.SplashScreenComponent
+import com.ersubhadip.mypersonaltranslator.presentation.home.HomeScreen
+import com.ersubhadip.mypersonaltranslator.presentation.splash.SplashScreen
 
 @Composable
 fun AppNavigation(
@@ -28,7 +29,7 @@ fun AppNavigation(
         navController = navController,
         startDestination = startDestinationRoute.value
     ) {
-        composable(route = Destinations.Splash.route) { SplashScreenComponent(navController) }
-        composable(route = Destinations.Home.route) {}
+        composable(route = Destinations.Splash.route) { SplashScreen(navController) }
+        composable(route = Destinations.Home.route) { HomeScreen(nav = navController) }
     }
 }

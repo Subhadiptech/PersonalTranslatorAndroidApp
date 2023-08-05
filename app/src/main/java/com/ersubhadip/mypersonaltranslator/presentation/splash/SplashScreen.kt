@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -18,15 +20,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ersubhadip.mypersonaltranslator.R
+import com.ersubhadip.mypersonaltranslator.navigation.Destinations
 import com.ersubhadip.mypersonaltranslator.ui.theme.Black
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaLight
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaSemiBold
 import com.ersubhadip.mypersonaltranslator.ui.theme.Orange
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Composable
-fun SplashScreenComponent(nav: NavController) {
+fun SplashScreen(nav: NavController) {
+
+    val scope = rememberCoroutineScope()
+    DisposableEffect(key1 = true) {
+        scope.launch {
+            delay(3000L)
+            nav.navigate(Destinations.Home.route)
+        }
+
+        onDispose { scope.cancel() }
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
