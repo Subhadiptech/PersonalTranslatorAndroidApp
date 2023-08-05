@@ -15,6 +15,9 @@ class TranslatorViewModel : ViewModel() {
     private val _isSuccess = MutableStateFlow(false)
     val isSuccess: StateFlow<Boolean> = _isSuccess
 
+    private val _translatedText = MutableStateFlow("")
+    val translatedText: StateFlow<String> = _translatedText
+
     fun getLanguages(): List<String> = listOf(
         "English",
         "English(US)",

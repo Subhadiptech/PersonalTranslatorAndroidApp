@@ -33,7 +33,7 @@ import org.koin.java.KoinJavaComponent.inject
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun TranslatorScreen() {
+fun TranslatorScreen(data: String) {
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden
     )
@@ -50,7 +50,9 @@ fun TranslatorScreen() {
         sheetContent = {
             BottomSheetContent(viewModel)
         }) {
+        Column {
 
+        }
     }
 }
 

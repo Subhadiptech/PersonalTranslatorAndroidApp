@@ -110,4 +110,10 @@ dependencies {
 
     //accomnist
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.20.3")
+
+    //ML text translation
+    implementation("com.huawei.hms:ml-computer-vision-ocr:3.2.0.300")
+    implementation("com.huawei.hms:ml-computer-vision-ocr-latin-model:3.2.0.300")
+    implementation("com.huawei.hms:ml-computer-translate:3.2.0.300")
+    implementation("com.huawei.hms:ml-computer-translate-model:3.2.0.300")
 }

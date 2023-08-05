@@ -32,6 +32,9 @@ fun AppNavigation(
     ) {
         composable(route = Destinations.Splash.route) { SplashScreen(navController) }
         composable(route = Destinations.Home.route) { HomeScreen(navController) }
-        composable(route = Destinations.Translator.route) { TranslatorScreen() }
+        composable(route = "${Destinations.Translator.route}/{id}") { navBackStack ->
+            val data = navBackStack.arguments?.getString("id")
+            TranslatorScreen(data = data ?: return@composable)
+        }
     }
 }
