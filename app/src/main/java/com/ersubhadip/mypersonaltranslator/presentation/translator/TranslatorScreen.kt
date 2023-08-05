@@ -38,6 +38,7 @@ fun TranslatorScreen(data: String) {
         initialValue = ModalBottomSheetValue.Hidden
     )
     val viewModel: TranslatorViewModel by inject(TranslatorViewModel::class.java)
+
     val translationSuccessful by viewModel.isSuccess.collectAsState()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
