@@ -14,7 +14,7 @@ class TextToVoiceViewModel : ViewModel() {
         ) {
             if (it == TextToSpeech.SUCCESS) {
                 textToSpeech?.let { txtToSpeech ->
-                    txtToSpeech.language = Locale.US
+                    txtToSpeech.language = lang
                     txtToSpeech.setSpeechRate(1.0f)
                     txtToSpeech.speak(
                         text,
