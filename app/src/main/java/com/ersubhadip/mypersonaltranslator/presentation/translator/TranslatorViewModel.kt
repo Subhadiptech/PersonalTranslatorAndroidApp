@@ -1,4 +1,4 @@
-package com.ersubhadip.mypersonaltranslator.presentation.home
+package com.ersubhadip.mypersonaltranslator.presentation.translator
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-class HomeViewModel : ViewModel() {
+class TranslatorViewModel : ViewModel() {
 
     private var textToSpeech: TextToSpeech? = null
     private val _isSuccess = MutableStateFlow(false)
