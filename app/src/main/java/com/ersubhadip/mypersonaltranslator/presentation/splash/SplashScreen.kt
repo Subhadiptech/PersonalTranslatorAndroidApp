@@ -26,14 +26,15 @@ import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaLight
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaSemiBold
 import com.ersubhadip.mypersonaltranslator.ui.theme.Orange
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun SplashScreen(nav: NavController) {
-
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(White)
     val scope = rememberCoroutineScope()
     DisposableEffect(key1 = true) {
         scope.launch {
@@ -48,7 +49,6 @@ fun SplashScreen(nav: NavController) {
             .fillMaxSize()
             .background(White)
     ) {
-
         Column(
             modifier = Modifier.align(Alignment.Center),
             verticalArrangement = Arrangement.Center,

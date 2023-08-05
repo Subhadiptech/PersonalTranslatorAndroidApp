@@ -106,5 +106,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 
     //navigation
-    implementation("androidx.navigation:navigation-compose:2.7.0-rc01")
+    implementation("androidx.navigation:navigation-compose:2.6.0")
+
+    //accomnist
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.20.3")
 }
