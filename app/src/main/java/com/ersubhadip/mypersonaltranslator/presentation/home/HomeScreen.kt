@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
@@ -26,14 +25,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ersubhadip.mypersonaltranslator.player.AndroidAudioPlayer
+import com.ersubhadip.mypersonaltranslator.recorder.AndroidAudioRecorder
 import com.ersubhadip.mypersonaltranslator.ui.theme.AlegreyaSansRegular
 import com.ersubhadip.mypersonaltranslator.ui.theme.Black
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaSemiBold
 import com.ersubhadip.mypersonaltranslator.ui.theme.Orange
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
+import java.io.File
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -47,6 +48,16 @@ fun HomeScreen(nav: NavController) {
     val translationSuccessful by viewModel.isSuccess.collectAsState()
 
     val scope = rememberCoroutineScope()
+
+    val recorder by lazy {
+        AndroidAudioRecorder(context)
+    }
+    val player by lazy {
+        AndroidAudioPlayer(context)
+    }
+
+    var audioFile: File? = null
+
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden
     )
@@ -59,9 +70,7 @@ fun HomeScreen(nav: NavController) {
         sheetContent = {
             BottomSheetContent(viewModel)
         }) {
-        Button(onClick = { scope.launch { sheetState.show() } }) {
 
-        }
     }
 
 }
