@@ -16,12 +16,12 @@ class TextTranslatorViewModel : ViewModel() {
     private var output: MutableLiveData<String> = MutableLiveData()
     private var failureOutput: MutableLiveData<Exception> = MutableLiveData()
 
-    var supportedLanguages: MutableLiveData<Set<String>> = MutableLiveData()
+    private var supportedLanguages: MutableLiveData<Set<String>> = MutableLiveData()
 
     private var loadingProgress: MutableState<Boolean> = mutableStateOf(false)
-    var showLanguagesState: MutableState<Boolean> = mutableStateOf(false)
+    private var showLanguagesState: MutableState<Boolean> = mutableStateOf(false)
         private set
-    var showTranslation: MutableState<Boolean> = mutableStateOf(false)
+    private var showTranslation: MutableState<Boolean> = mutableStateOf(false)
         private set
 
     init {
