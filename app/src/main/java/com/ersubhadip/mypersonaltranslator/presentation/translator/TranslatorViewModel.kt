@@ -2,6 +2,7 @@ package com.ersubhadip.mypersonaltranslator.presentation.translator
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
