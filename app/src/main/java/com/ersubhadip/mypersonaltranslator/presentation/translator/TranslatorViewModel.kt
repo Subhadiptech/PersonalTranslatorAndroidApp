@@ -95,19 +95,18 @@ class TranslatorViewModel : ViewModel() {
         }
     }
 
-    fun getLanguages(): List<String> = listOf(
-        "English",
-        "English(US)",
-        "English(UK)",
-        "Canada",
-        "French",
-        "German",
-        "Spanish",
-        "Chinese",
-        "Simplified Chinese",
-        "Italian",
-        "Japanese",
-        "Korean"
+    fun getLanguages() = listOf<Pair<String, Locale>>(
+        Pair("English", Locale.ENGLISH),
+        Pair("English(US)", Locale.US),
+        Pair("English(UK)", Locale.UK),
+        Pair("Canada", Locale.CANADA),
+        Pair("French", Locale.FRENCH),
+        Pair("German", Locale.GERMAN),
+        Pair("Chinese", Locale.CHINESE),
+        Pair("Simplified Chinese", Locale.SIMPLIFIED_CHINESE),
+        Pair("Italian", Locale.ITALIAN),
+        Pair("Japanese", Locale.JAPANESE),
+        Pair("Korean", Locale.KOREAN)
     )
 
     fun textToSpeech(text: String, lang: Locale, context: Context) {

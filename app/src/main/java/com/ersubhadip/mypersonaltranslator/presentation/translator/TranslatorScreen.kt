@@ -1,14 +1,18 @@
 package com.ersubhadip.mypersonaltranslator.presentation.translator
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
@@ -18,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -29,6 +34,7 @@ import com.ersubhadip.mypersonaltranslator.ui.theme.Black
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaSemiBold
 import com.ersubhadip.mypersonaltranslator.ui.theme.Orange
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
+import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -49,16 +55,23 @@ fun TranslatorScreen(data: String) {
         sheetBackgroundColor = White,
         sheetShape = RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp),
         sheetContent = {
-            BottomSheetContent(viewModel)
+            BottomSheetContent(viewModel, data)
         }) {
-        Column {
-
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Button(onClick = { scope.launch { sheetState.show() } }) {
+                Text(text = "Speak my language")
+            }
         }
     }
 }
 
 @Composable
-fun BottomSheetContent(viewModel: TranslatorViewModel) {
+fun BottomSheetContent(viewModel: TranslatorViewModel, text: String) {
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,7 +89,7 @@ fun BottomSheetContent(viewModel: TranslatorViewModel) {
         LazyRow {
             items(viewModel.getLanguages()) {
                 Text(
-                    text = it,
+                    text = it.first,
                     fontFamily = AlegreyaSansRegular,
                     color = White,
                     fontSize = 16.sp,
@@ -87,6 +100,13 @@ fun BottomSheetContent(viewModel: TranslatorViewModel) {
                         )
                         .background(Orange)
                         .padding(horizontal = 6.dp, vertical = 2.dp)
+                        .clickable {
+                            viewModel.textToSpeech(
+                                text = text,
+                                lang = it.second,
+                                context = context
+                            )
+                        }
                 )
             }
         }

@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.ersubhadip.mypersonaltranslator.R
+import com.ersubhadip.mypersonaltranslator.navigation.Destinations
 import com.ersubhadip.mypersonaltranslator.ui.theme.Black
 import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaSemiBold
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
@@ -34,8 +35,14 @@ fun HomeScreen(nav: NavHostController) {
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(White)
     val context = LocalContext.current
-    var speechToText = remember {
-        ""
+    var speechToText = ""
+    val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+        putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH
+        )
+        putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak Something")
     }
 
     val launchActivityForResult = rememberLauncherForActivityResult(
@@ -46,13 +53,18 @@ fun HomeScreen(nav: NavHostController) {
                 result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)
                     .toString()
             context.showToast("Recorded Successfully")
-            nav.navigate("Destinations.Translator.route/$speechToText")
+            nav.navigate(
+                Destinations.Translator.withArgs(speechToText)
+            )
         } else {
             context.showToast("Something Went Wrong!")
         }
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = "Record and translate",
             color = Black,
@@ -63,16 +75,9 @@ fun HomeScreen(nav: NavHostController) {
         Image(
             modifier = Modifier
                 .size(120.dp)
-                .clickable { launchActivityForResult.launch(setupSpeechToTextIntent()) },
+                .clickable { launchActivityForResult.launch(intent) },
             painter = painterResource(id = R.drawable.ic_mic),
             contentDescription = null
         )
     }
-}
-
-
-fun setupSpeechToTextIntent() = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-    putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH)
-    putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-    putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak Something")
 }
