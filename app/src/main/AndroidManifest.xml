@@ -26,6 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPersonalTranslator"
         tools:targetApi="31">
+
+        <receiver android:name=".service.LanguageSupportBroadcast" />
+
         <activity
             android:name=".presentation.host.MainActivity"
             android:exported="true"

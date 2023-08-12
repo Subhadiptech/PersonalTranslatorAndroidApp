@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,20 +30,22 @@ import com.ersubhadip.mypersonaltranslator.ui.theme.LexendDecaSemiBold
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
 import com.ersubhadip.mypersonaltranslator.utilities.showToast
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import java.util.Locale
 
 @Composable
 fun HomeScreen(nav: NavHostController) {
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(White)
+
     val context = LocalContext.current
-    var speechToText = ""
+    val speechToText = remember {
+        mutableStateOf("")
+    }
     val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
         putExtra(
             RecognizerIntent.EXTRA_LANGUAGE_MODEL,
             RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH
         )
-        putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        putExtra(RecognizerIntent.EXTRA_LANGUAGE, "hi-IN,bn-IN")
         putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak Something")
     }
 
@@ -49,12 +53,12 @@ fun HomeScreen(nav: NavHostController) {
         contract = ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            speechToText =
+            speechToText.value =
                 result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)
                     .toString()
             context.showToast("Recorded Successfully")
             nav.navigate(
-                Destinations.Translator.withArgs(speechToText)
+                Destinations.Translator.withArgs(speechToText.value)
             )
         } else {
             context.showToast("Something Went Wrong!")

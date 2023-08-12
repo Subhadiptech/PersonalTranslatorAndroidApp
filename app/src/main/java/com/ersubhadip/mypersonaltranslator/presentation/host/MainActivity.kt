@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.ersubhadip.mypersonaltranslator.navigation.AppNavigation
 import com.ersubhadip.mypersonaltranslator.ui.theme.MyPersonalTranslatorTheme
-import com.ersubhadip.mypersonaltranslator.ui.theme.Transparent
 import com.ersubhadip.mypersonaltranslator.ui.theme.White
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
